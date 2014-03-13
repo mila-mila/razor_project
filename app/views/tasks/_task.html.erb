@@ -1,0 +1,16 @@
+<tr>
+  <td class="task">
+    <span class="name"><%= task.name %></span>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(task.created_at) %> ago.
+    </span>
+  </td>
+  <% user = task.user rescue User.find(task.user_id) %>
+  <% if current_user?(user) %>
+    <td>
+      <%= link_to "delete", task, :method => :delete,
+                                       :confirm => "You sure?",
+                                       :title => task.name %>
+    </td>
+  <% end %>
+</tr>

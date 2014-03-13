@@ -1,0 +1,43 @@
+<h1>Razor project</h1>
+<p>
+  This is the home page for the Razor project.
+</p>
+
+<ul>
+  <li><%= link_to "Home", root_path %></li>
+
+
+  <%- if user_signed_in? %>
+  
+    <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+  <% else %>
+
+    <li><%= link_to "Sign in", new_user_session_path %></li>
+    <li><%= link_to "Sign up", new_user_registration_path %></li>
+  <% end %>
+
+</ul>
+
+<%- if user_signed_in? %>
+  <h3> User <%= current_user.email %> has <%= pluralize(current_user.tasks.count, "task") %></h3>
+  <% if current_user.tasks.count > 0 %>
+    <table class="tasks">
+      <% current_user.tasks.each do |task| %>
+        <tr>
+          <td class="task">
+            <span class="name"><strong><%= task.name %></strong></span>
+            <span>
+              Start time:  <%= task.date_from %>
+            </span>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+
+
+  <%= link_to "Create New Task", new_task_path %>
+
+
+
+<% end %>

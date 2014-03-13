@@ -1,0 +1,29 @@
+web
+scope
+active?
+done, notdone, onwait
+
+            <tr>
+              <td class="task">
+                <span class="name"><%= task.name %></span>
+                <span class="timestamp">
+                  Start time ago:  <%= time_ago_in_words(task.date_from) %> ago.
+                </span>
+              </td>
+            </tr>
+
+
+           task.date_from.to_formatted_s(:long)
+
+    <table class="tasks">
+      <% current_user.tasks.each do |task| %>
+        <tr>
+          <td class="task">
+            <span class="name"><strong><%= task.name %></strong></span>
+            <span>
+              Start time:  <%= task.date_from %>
+            </span>
+          </td>
+        </tr>
+      <% end %>
+    </table>
