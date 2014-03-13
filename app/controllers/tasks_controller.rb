@@ -2,12 +2,12 @@ class TasksController < ApplicationController
   before_filter :authenticate_user!
 
   def new
-    @task = currentUser.tasks.new
+    @task = current_user.tasks.new
   end
   
   def create
-    @task = current_user.tasks.new(params[:task])
-    if @new_task.save
+    @task = current_user.tasks.build(params[:task])
+    if @task.save
       redirect_to root_path
     else
       redirect_to root_path
