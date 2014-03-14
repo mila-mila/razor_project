@@ -27,3 +27,21 @@ done, notdone, onwait
         </tr>
       <% end %>
     </table>
+
+
+    duration = (date_to-date_from).to_i
+    workingDay = 8.hours
+    workingWeek = 5.days
+
+    if duration < 1.days
+      (duration / 1.hours).round  #less then one day
+    else
+      whole_days = (duration/1.days).floor
+      if whole_days * 1.days< workingWeek 
+        remaining_hours = duration - whole_days * 1.days
+        workingHours = whole_days * workingDay + remaining_hours
+        (workingHours / 1.hours).round 
+      else
+        "todo"
+      end
+

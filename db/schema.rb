@@ -11,19 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140313103151) do
+ActiveRecord::Schema.define(:version => 20140314132939) do
 
   create_table "tasks", :force => true do |t|
     t.string   "name"
     t.string   "content"
     t.integer  "user_id"
     t.datetime "date_from"
-    t.datetime "date_to"
     t.datetime "date_finished"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.integer  "duration"
   end
 
+  add_index "tasks", ["date_from"], :name => "index_tasks_on_date_from"
   add_index "tasks", ["user_id", "name"], :name => "index_tasks_on_user_id_and_name"
 
   create_table "users", :force => true do |t|

@@ -2,9 +2,9 @@
 
 <%= form_for(@task) do |f| %>
   <div>
-    <%= f.text_area :name, placeholder: "Compose new task...Name" %>
-    <%= f.text_area :content, placeholder: "content" %>
-    <%= date_select :task, :date_from %>
+    <div><%= f.text_area :name, placeholder: "Compose new task...Name" %><%= f.text_area :content, placeholder: "content" %></div>
+    <div>Start time: <%= datetime_select :task, :date_from %></div>
+    <div>Duration in whole hours:   <%= f.select :duration, @hoursDropDown %> (remaining hours today <%= @remainingHoursToday %>)</div>
   </div>
   <%= f.submit "Post", class: "btn" %>
 <% end %>

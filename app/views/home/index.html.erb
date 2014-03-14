@@ -2,23 +2,22 @@
 <p>
   This is the home page for the Razor project.
 </p>
-
-
-
-  
-
-
-
 <%- if user_signed_in? %>
-  <h3> User <%= current_user.email %> has <%= pluralize(current_user.tasks.count, "task") %></h3>
-  <% if current_user.tasks.count > 0 %>
+  <h3> User <%= current_user.email %> has <%= pluralize(@tasks.count, "task") %></h3>
+  <% if @tasks.count > 0 %>
     <table class="tasks">
-      <% current_user.tasks.each do |task| %>
+      <% @tasks.each do |task| %>
         <tr>
           <td class="task">
             <span class="name"><strong><%= task.name %></strong></span>
             <span>
               Start time:  <%= task.date_from.to_formatted_s(:long) %>
+            </span>
+            <span>
+              Expected end time:  <%= task.expected_end_time %>
+            </span>
+            <span>
+              Duration:  <%=task.duration%> 
             </span>
           </td>
         </tr>
