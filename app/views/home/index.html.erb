@@ -9,16 +9,21 @@
       <% @tasks.each do |task| %>
         <tr>
           <td class="task">
-            <span class="name"><strong><%= task.name %></strong></span>
+            <%= link_to task.name, task %>
             <span>
               Start time:  <%= task.date_from.to_formatted_s(:long) %>
             </span>
             <span>
-              Expected end time:  <%= task.expected_end_time %>
+              Expected end time:  <%= task.expected_end_time.to_formatted_s(:long) %>
             </span>
             <span>
               Duration:  <%=task.duration%> 
             </span>
+            <% if task.date_finished? %> 
+              <strong>done</strong>
+              <% if (task.date_finished < task.expected_end_time) %>  <strong>in time</strong> <% else %> over time <% end %>
+              <%= task.date_finished.to_formatted_s(:long) %>
+            <% end %>
           </td>
         </tr>
       <% end %>

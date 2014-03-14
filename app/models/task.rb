@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
   validates :name, presence: true, length: { maximum: 140 }
   validates :date_from, presence: true
   validates :duration, presence: true
-
+  
   def expected_end_time
     date_from + (duration).hours
   end

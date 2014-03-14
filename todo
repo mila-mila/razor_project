@@ -45,3 +45,7 @@ done, notdone, onwait
         "todo"
       end
 
+      <%= button_to [:update, @task] do %>
+  Make happy <strong><%= @task.name %></strong>
+<% end %> 
+

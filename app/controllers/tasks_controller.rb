@@ -17,4 +17,20 @@ class TasksController < ApplicationController
       flash[:notice] = "Error on creating new tasks! ! !"
     end
   end
+
+  def show
+    @task = current_user.tasks.find(params[:id])
+  end
+
+  def update
+    @task = current_user.tasks.find(params[:id])
+    if @task.update_attributes(date_finished: DateTime.current)
+      redirect_to @task
+      flash[:notice] = "Task finished."
+    else
+      redirect_to @task
+      flash[:notice] = "there was an error, task not marked as finished"
+    end
+  end
+
 end
