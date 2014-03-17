@@ -4,7 +4,7 @@
   <div>
     <div><%= f.text_area :name, placeholder: "Compose new task...Name" %><%= f.text_area :content, placeholder: "content" %></div>
     <div>Start time: <%= datetime_select :task, :date_from %></div>
-    <div>Duration in whole hours:   <%= f.select :duration, @hoursDropDown %> (remaining hours today <%= @remainingHoursToday %>)</div>
+    <div>Duration in whole hours:   <%= f.select :duration, controller.hours_drop_down %> (remaining hours today <%= controller.remaining_hours_today %>)</div>
   </div>
   <%= f.submit "Post", class: "btn" %>
 <% end %>

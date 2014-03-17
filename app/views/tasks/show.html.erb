@@ -18,3 +18,11 @@
 <% unless @task.date_finished? %>
   <%= link_to("Task done", task_path(@task, date_finished: DateTime.new), :method => :put, :confirm => "Sure?") %>
 <% end %>
+
+
+<p>
+  <%= link_to "Back to tasks", tasks_path %> 
+</p>
+<p>
+  <%= link_to "Home", root_path %> 
+</p>

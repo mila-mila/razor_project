@@ -3,39 +3,15 @@
   This is the home page for the Razor project.
 </p>
 <%- if user_signed_in? %>
-  <h3> User <%= current_user.email %> has <%= pluralize(@tasks.count, "task") %></h3>
-  <% if @tasks.count > 0 %>
-    <table class="tasks">
-      <% @tasks.each do |task| %>
-        <tr>
-          <td class="task">
-            <%= link_to task.name, task %>
-            <span>
-              Start time:  <%= task.date_from.to_formatted_s(:long) %>
-            </span>
-            <span>
-              Expected end time:  <%= task.expected_end_time.to_formatted_s(:long) %>
-            </span>
-            <span>
-              Duration:  <%=task.duration%> 
-            </span>
-            <% if task.date_finished? %> 
-              <strong>done</strong>
-              <% if (task.date_finished < task.expected_end_time) %>  <strong>in time</strong> <% else %> over time <% end %>
-              <%= task.date_finished.to_formatted_s(:long) %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  <% end %>
+  <div> <%= @today.strftime("%d/%m/%Y")%></div>
+  <h3> User <%= current_user.email %></h3>
 
-<p>
-  <%= link_to "Create New Task", new_task_path %>
-</p>
+  <p>
+    <%= link_to "See Tasks", tasks_path %>
+  </p>
 
-<p>
-  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+  <p>
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
 </p>
 
   <% else %>
