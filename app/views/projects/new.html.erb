@@ -1,0 +1,7 @@
+<h1>Create new project</h1>
+
+<%= simple_form_for(@project) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :content, as: :text %>
+  <%= f.button :submit %>
+<% end %>

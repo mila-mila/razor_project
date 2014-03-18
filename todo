@@ -50,9 +50,8 @@ done, notdone, onwait
 <% end %> 
 
 
-
-
 config datetime zone
 
 
-pitanje funkcija za vise taskove, npr. taskovi danas ne moze u signle task model? vec u kontroler?
+create projects, redirect to projects
+

@@ -1,0 +1,41 @@
+<%- if user_signed_in? %>
+
+  <% if @projects.count > 0 %>
+      <table class="projects">
+        <% @projects.each do |project| %>
+          <tr>
+            <td class="project">
+              <%= link_to project.name, project %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+  <% end %>
+
+
+  <p>
+    <%= link_to "Create New Project", new_project_path %>
+  </p>
+
+
+  <p>
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+  </p>
+
+<% else %>
+  <ul>
+      <li><%= link_to "Sign in", new_user_session_path %></li>
+      <li><%= link_to "Sign up", new_user_registration_path %></li>
+  </ul>
+
+<% end %>
+
+<p>
+  <%= link_to "Home", root_path %> 
+</p>
+
+
+
+
+
+

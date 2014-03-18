@@ -1,5 +1,5 @@
 <%- if user_signed_in? %>
-  <div> <%= controller.date_today.strftime("%d/%m/%Y")%></div>
+  <div> <%= DateTime.now.strftime("%d/%m/%Y")%></div>
   <h3> User <%= current_user.email %> has <%= pluralize(@tasks.count, "task") %></h3>
 
   <% if @tasks.count > 0 %>
@@ -28,7 +28,7 @@
       </table>
   <% end %>
 
-  <% if controller.hours_left? %>
+  <% if current_user.hours_left? %>
     <p>
       <%= link_to "Create New Task", new_task_path %>
     </p>
@@ -45,6 +45,12 @@
   </ul>
 
 <% end %>
+
+<p>
+  <%= link_to "Home", root_path %> 
+</p>
+
+
 
 
 

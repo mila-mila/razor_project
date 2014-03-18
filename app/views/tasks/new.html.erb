@@ -1,10 +1,10 @@
 <h1>Create new task</h1>
 
-<%= form_for(@task) do |f| %>
-  <div>
-    <div><%= f.text_area :name, placeholder: "Compose new task...Name" %><%= f.text_area :content, placeholder: "content" %></div>
-    <div>Start time: <%= datetime_select :task, :date_from %></div>
-    <div>Duration in whole hours:   <%= f.select :duration, controller.hours_drop_down %> (remaining hours today <%= controller.remaining_hours_today %>)</div>
-  </div>
-  <%= f.submit "Post", class: "btn" %>
+<%= simple_form_for @task do |f| %>
+  <%= f.association :project %>
+  <%= f.input :name %>
+  <%= f.input :content, as: :text %>
+  <%= f.input :date_from, as: :datetime %>
+  <%= f.input :duration, collection: 1..current_user.remaining_hours_today %>
+  <%= f.button :submit %>
 <% end %>

@@ -6,8 +6,44 @@
   <div> <%= @today.strftime("%d/%m/%Y")%></div>
   <h3> User <%= current_user.email %></h3>
 
+
+  <% if @tasks.count > 0 %>
+      <table class="tasks">
+        <% @tasks.each do |task| %>
+          <tr>
+            <td class="task">
+              <%= link_to task.name, task %>
+              <span>
+                Start time:  <%= task.date_from.strftime("%H:%M ")  %>
+              </span>
+              <span>
+                Expected end time:  <%= task.expected_end_time.strftime("%H:%M ") %>
+              </span>
+              <span>
+                Project:  "<%= task.project_name %>"
+              </span>
+              <span>
+                Duration:  <%=task.duration%> 
+              </span>
+              <% if task.date_finished? %> 
+                <strong>done</strong>
+                (<% if task.done_in_time? %>  <strong>in time</strong> <% else %> over time <% end %>
+                <%= task.date_finished.strftime("%H:%M ") %>)
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+  <% end %>
+
+  <% if current_user.hours_left? %>
+    <p>
+      <%= link_to "Create New Task", new_task_path %>
+    </p>
+  <% end %>
+
   <p>
-    <%= link_to "See Tasks", tasks_path %>
+    <%= link_to "See Pojects", projects_path %>
   </p>
 
   <p>
